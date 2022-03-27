@@ -22,10 +22,10 @@ if os.path.isfile(args.path):
     filepaths = [args.path]
     logging.info('File was given')
 else:
-    filepaths = [file for file in os.listdir(args.path) if file.endswith('.log')]
-    if len(filepaths) == 0:
+    filenames = [file for file in os.listdir(args.path) if file.endswith('.log')]
+    if len(filenames) == 0:
         raise Exception('Not a log files in this directory')
-
+    filepaths = [os.path.join(args.path, filename) for filename in filenames]
     logging.info('Directory was given')
 
 for filepath in filepaths:
